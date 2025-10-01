@@ -615,11 +615,14 @@
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
+  transition: transform .6s ease-in-out;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
 }
 
 .rating-card:hover {
-  transform: translateY(-5px);
+  transform: translateZ(500px);
+  cursor: pointer;
 }
 
 /* Stars */
@@ -672,8 +675,8 @@
                 </div>
                 <div class="hero-image">
                     <div
-                        style="width: 100%; height: 400px; background-color: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-user" style="font-size: 8rem; color: rgba(255,255,255,0.7);"></i>
+                        style="width: min(800px, 90%); height: 400px; padding: 12px; background-color: rgba(255,255,255,0.1); ; clip-path: circle(100px at center); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user" style="font-size: 8rem; color: rgba(255,255,255,0.7); padding: 12px; width: 200px;"></i>
                     </div>
                 </div>
             </div>
