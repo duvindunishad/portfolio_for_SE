@@ -581,6 +581,60 @@
                 flex-direction: column;
             }
         }
+        /* Ratings Section */
+.ratings {
+  background: #f8f9fa;
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Grid */
+.ratings-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Rating Card */
+.rating-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.rating-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Stars */
+.stars {
+  color: #e63946; /* red accent for stars */
+  margin: 0.5rem 0 1rem;
+  font-size: 1.2rem;
+}
+
+.rating-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
     </style>
 </head>
 
@@ -846,6 +900,54 @@
 
 
     <!-- AI Chatbot Project Detail -->
+<!-- ratings -->
+ <section id="ratings" class="ratings">
+  <div class="container">
+    <h2 class="section-title">Customer Ratings</h2>
+    <p class="section-subtitle">What our customers say about AutoElite</p>
+
+    <div class="ratings-grid">
+      <!-- Rating Card 1 -->
+      <div class="rating-card">
+        <h3>John D.</h3>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <p>"Great service! My car looks brand new after detailing."</p>
+      </div>
+
+      <!-- Rating Card 2 -->
+      <div class="rating-card">
+        <h3>Sophia M.</h3>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>"Amazing experience. Professional staff and fast service."</p>
+      </div>
+
+      <!-- Rating Card 3 -->
+      <div class="rating-card">
+        <h3>David R.</h3>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <p>"Good value for money. Will definitely come back again."</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
     <!-- Task Manager Project Detail -->
