@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan | Software Engineering Student</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7e22ce;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        section {
+            padding: 5rem 0;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+            padding-top: 80px;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 10rem 0 7rem;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-light {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-light:hover {
+            background-color: var(--gray-light);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Skills Section */
+        .skills {
+            background-color: var(--gray-light);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list i {
+            color: var(--primary);
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 200px;
+            background-color: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            background-color: var(--gray-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+
+        /* Project Detail Pages */
+        .project-detail {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .project-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 7rem 0 4rem;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+        }
+
+        .project-hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .project-hero-text {
+            flex: 2;
+        }
+
+        .project-hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .project-hero-image div {
+            width: 100%;
+            height: 250px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-description h3,
+        .project-details h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .project-features {
+            margin: 2rem 0;
+        }
+
+        .project-features ul {
+            list-style-type: none;
+        }
+
+        .project-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .project-features i {
+            color: var(--primary);
+            margin-right: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-stack {
+            margin-top: 2rem;
+        }
+
+        .tech-stack .project-tags {
+            margin-top: 1rem;
+        }
+
+        .back-button {
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--dark);
+            color: white;
+        }
+
+        .contact h2::after {
+            background: linear-gradient(to right, white, var(--gray-light));
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-right: 1rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .social-links li {
+            margin: 0 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .hero-content,
+            .about-content,
+            .contact-container,
+            .project-hero-content,
+            .project-info {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text,
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo" data-page="home">Alex<span>Morgan</span></a>
+            <ul class="nav-links">
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li><a href="#" data-page="skills">Skills</a></li>
+                <li><a href="#" data-page="projects">Projects</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page-content active">
+        <div class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Software Engineering Student</h1>
+                    <p>Passionate about creating innovative solutions through code. Currently pursuing a degree in
+                        Software Engineering with focus on full-stack development and AI technologies.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-light" data-page="projects">View Projects</a>
+                        <a href="#" class="btn btn-outline" data-page="contact"
+                            style="color: white; border-color: white;">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div
+                        style="width: 100%; height: 400px; background-color: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user" style="font-size: 8rem; color: rgba(255,255,255,0.7);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    
+
+    <!-- Skills Page -->
+    
+
+    <!-- Projects Page -->
+   
+
+    <!-- Project Detail Pages -->
+    <!-- E-Commerce Project Detail -->
+    
+
+    <!-- AI Chatbot Project Detail -->
+    
+
+    <!-- Task Manager Project Detail -->
+   
+
+    <!-- Contact Page -->
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-github"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <p class="copyright">© 2023 Alex Morgan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-links a, .logo, .hero-buttons a');
+            const pages = document.querySelectorAll('.page-content');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinksContainer = document.querySelector('.nav-links');
+            const viewProjectButtons = document.querySelectorAll('.view-project');
+            const backToProjectsButtons = document.querySelectorAll('.back-to-projects');
+
+            // Set initial active page
+            showPage('home');
+
+            // Add click event listeners to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinksContainer.style.display = 'none';
+                    }
+                });
+            });
+
+            // Add click event listeners to view project buttons
+            viewProjectButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const projectId = this.getAttribute('data-project');
+                    showPage(`project-${projectId}`);
+
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinksContainer.style.display = 'none';
+                    }
+                });
+            });
+
+            // Add click event listeners to back to projects buttons
+            backToProjectsButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showPage('projects');
+
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinksContainer.style.display = 'none';
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            mobileMenu.addEventListener('click', function () {
+                if (navLinksContainer.style.display === 'flex') {
+                    navLinksContainer.style.display = 'none';
+                } else {
+                    navLinksContainer.style.display = 'flex';
+                    navLinksContainer.style.flexDirection = 'column';
+                    navLinksContainer.style.position = 'absolute';
+                    navLinksContainer.style.top = '100%';
+                    navLinksContainer.style.left = '0';
+                    navLinksContainer.style.right = '0';
+                    navLinksContainer.style.backgroundColor = 'white';
+                    navLinksContainer.style.padding = '1rem';
+                    navLinksContainer.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+                }
+            });
+
+            // Function to show specific page and hide others
+            function showPage(pageId) {
+                pages.forEach(page => {
+                    if (page.id === pageId) {
+                        page.classList.add('active');
+                    } else {
+                        page.classList.remove('active');
+                    }
+                });
+
+                // Update active state in navigation
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.style.color = 'var(--primary)';
+                        link.style.fontWeight = '600';
+                    } else {
+                        link.style.color = '';
+                        link.style.fontWeight = '';
+                    }
+                });
+
+                // Scroll to top when changing pages
+                window.scrollTo(0, 0);
+            }
+
+            // Update year in copyright
+            document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} Alex Morgan. All Rights Reserved.`;
+        });
+    </script>
+</body>
+
+</html>
