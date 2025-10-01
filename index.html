@@ -581,60 +581,61 @@
                 flex-direction: column;
             }
         }
+
         /* Ratings Section */
-.ratings {
-  background: #f8f9fa;
-  padding: 4rem 1.5rem;
-  text-align: center;
-}
+        .ratings {
+            background: #f8f9fa;
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
 
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: #111;
-}
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #111;
+        }
 
-.section-subtitle {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 2rem;
-}
+        .section-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
 
-/* Grid */
-.ratings-grid {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  max-width: 1000px;
-  margin: 0 auto;
-}
+        /* Grid */
+        .ratings-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-/* Rating Card */
-.rating-card {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
-}
+        /* Rating Card */
+        .rating-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
 
-.rating-card:hover {
-  transform: translateY(-5px);
-}
+        .rating-card:hover {
+            transform: translateY(-5px);
+        }
 
-/* Stars */
-.stars {
-  color: #e63946; /* red accent for stars */
-  margin: 0.5rem 0 1rem;
-  font-size: 1.2rem;
-}
+        /* Stars */
+        .stars {
+            color: #e63946;
+            /* red accent for stars */
+            margin: 0.5rem 0 1rem;
+            font-size: 1.2rem;
+        }
 
-.rating-card p {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.5;
-}
-
+        .rating-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
     </style>
 </head>
 
@@ -764,7 +765,7 @@
     </section>
 
     <!-- Projects Page -->
-<section id="projects" class="page-content">
+    <section id="projects" class="page-content">
         <div class="container">
             <h2>My Projects</h2>
             <div class="projects-container">
@@ -900,57 +901,126 @@
 
 
     <!-- AI Chatbot Project Detail -->
-<!-- ratings -->
- <section id="ratings" class="ratings">
-  <div class="container">
-    <h2 class="section-title">Customer Ratings</h2>
-    <p class="section-subtitle">What our customers say about AutoElite</p>
+    <!-- ratings -->
+    <section id="ratings" class="ratings">
+        <div class="container">
+            <h2 class="section-title">Customer Ratings</h2>
+            <p class="section-subtitle">What our customers say about AutoElite</p>
 
-    <div class="ratings-grid">
-      <!-- Rating Card 1 -->
-      <div class="rating-card">
-        <h3>John D.</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>"Great service! My car looks brand new after detailing."</p>
-      </div>
+            <div class="ratings-grid">
+                <!-- Rating Card 1 -->
+                <div class="rating-card">
+                    <h3>John D.</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Great service! My car looks brand new after detailing."</p>
+                </div>
 
-      <!-- Rating Card 2 -->
-      <div class="rating-card">
-        <h3>Sophia M.</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <p>"Amazing experience. Professional staff and fast service."</p>
-      </div>
+                <!-- Rating Card 2 -->
+                <div class="rating-card">
+                    <h3>Sophia M.</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Amazing experience. Professional staff and fast service."</p>
+                </div>
 
-      <!-- Rating Card 3 -->
-      <div class="rating-card">
-        <h3>David R.</h3>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
+                <!-- Rating Card 3 -->
+                <div class="rating-card">
+                    <h3>David R.</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>"Good value for money. Will definitely come back again."</p>
+                </div>
+            </div>
         </div>
-        <p>"Good value for money. Will definitely come back again."</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 
     <!-- Task Manager Project Detail -->
+    <section id="project-task-manager" class="page-content">
+        <div class="container">
+            <div class="back-button">
+                <a href="#" class="btn btn-outline back-to-projects"><i class="fas fa-arrow-left"></i> Back to
+                    Projects</a>
+            </div>
+            <div class="project-detail">
+                <div class="project-hero">
+                    <div class="project-hero-content">
+                        <div class="project-hero-text">
+                            <h1>Task Management App</h1>
+                            <p>A collaborative task management application with real-time updates and team features</p>
+                        </div>
+                        <div class="project-hero-image">
+                            <div>
+                                <i class="fas fa-tasks" style="font-size: 5rem; color: rgba(255,255,255,0.8);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <div class="project-description">
+                        <h3>Project Overview</h3>
+                        <p>This task management application was designed to help teams collaborate effectively on
+                            projects. It features real-time updates, task assignment, progress tracking, and multiple
+                            project views to suit different workflows.</p>
+
+                        <div class="project-features">
+                            <h3>Key Features</h3>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Real-time task updates</li>
+                                <li><i class="fas fa-check"></i> Team collaboration tools</li>
+                                <li><i class="fas fa-check"></i> Multiple project views (list, board, calendar)</li>
+                                <li><i class="fas fa-check"></i> File attachments and comments</li>
+                                <li><i class="fas fa-check"></i> Progress tracking and reporting</li>
+                                <li><i class="fas fa-check"></i> Mobile-responsive design</li>
+                                <li><i class="fas fa-check"></i> Offline functionality</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fab fa-github"></i> View Code</a>
+                            <a href="#" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+
+                    <div class="project-details">
+                        <h3>Project Details</h3>
+                        <p><strong>Timeline:</strong> 2 months</p>
+                        <p><strong>Status:</strong> Completed</p>
+                        <p><strong>Role:</strong> Frontend Developer</p>
+
+                        <div class="tech-stack">
+                            <h3>Technologies Used</h3>
+                            <div class="project-tags">
+                                <span class="project-tag">Vue.js</span>
+                                <span class="project-tag">Firebase</span>
+                                <span class="project-tag">Vuex</span>
+                                <span class="project-tag">PWA</span>
+                                <span class="project-tag">CSS3</span>
+                                <span class="project-tag">Chart.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <!-- Contact Page -->
