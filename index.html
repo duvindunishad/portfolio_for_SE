@@ -16,6 +16,10 @@
             --light: #f8fafc;
             --gray: #64748b;
             --gray-light: #e2e8f0;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --btn-bg: #2563eb;
+            --btn-text: #fff;
         }
 
         /* Base Styles */
@@ -34,6 +38,16 @@
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
+            transition: all 0.4s ease-in-out;
+        }
+
+        body.dark {
+            --bg-color: #1e293b;
+            --text-color: #f8fafc;
+            --primary: #1d4ed8;
+            --gray: #94a3b8;
+            background-color: var(--dark);
+            color: var(--light);
         }
 
         h1,
@@ -43,6 +57,28 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1rem;
+        }
+
+
+
+        .btn {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+        }
+
+
+
+
+
+        .project-image,
+        .ratings,
+        footer {
+            background-color: var(--bg-color);
+        }
+
+        .project-tag {
+            background-color: var(--gray);
+            color: var(--text-color);
         }
 
         h1 {
@@ -119,16 +155,22 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: white;
+            background-color: var(--light);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            transition: 0.4s ease-in-out;
+        }
+
+        body.dark header {
+            background-color: var(--dark);
+            color: var(--light);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
         }
 
         .logo {
@@ -138,17 +180,26 @@
             text-decoration: none;
         }
 
+        body.dark .logo {
+            color: var(--light);
+        }
+
         .logo span {
             color: var(--primary);
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
-        }
+            background-color: var(--light);
+            /* list-style: none; */
 
+        }
+        body.dark .nav-links{
+            background-color: var(--dark);
+        }
         .nav-links li {
             margin-left: 2rem;
+            text-align: center;
         }
 
         .nav-links a {
@@ -156,6 +207,10 @@
             color: var(--dark);
             font-weight: 500;
             transition: color 0.3s ease;
+        }
+
+        body.dark .nav-links a {
+            color: var(--gray-light);
         }
 
         .nav-links a:hover {
@@ -166,6 +221,11 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--dark);
+        }
+
+        body.dark .mobile-menu {
+            color: var(--light);
         }
 
         /* Page Content */
@@ -298,6 +358,10 @@
             transition: transform 0.3s ease;
         }
 
+        body.dark .project-card {
+            background-color: var(--gray);
+        }
+
         .project-card:hover {
             transform: translateY(-10px);
         }
@@ -325,6 +389,10 @@
             color: var(--gray);
         }
 
+        body.dark .project-content p {
+            color: var(--btn-text);
+        }
+
         .project-tags {
             display: flex;
             flex-wrap: wrap;
@@ -349,9 +417,12 @@
         .project-hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 7rem 0 4rem;
+            padding: 5rem 4rem;
             margin-bottom: 3rem;
             border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
         }
 
         .project-hero-content {
@@ -361,7 +432,7 @@
         }
 
         .project-hero-text {
-            flex: 2;
+            flex: 1;
         }
 
         .project-hero-image {
@@ -377,6 +448,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            height: fit-content;
+            padding: 2rem 4rem;
         }
 
         .project-info {
@@ -571,6 +644,7 @@
 
             .mobile-menu {
                 display: block;
+                transition: 0.4s;
             }
 
             h1 {
@@ -583,10 +657,15 @@
         }
 
         /* Ratings Section */
-        .ratings {
-            background: #f8f9fa;
+        body .ratings {
+            background: var(--bg-color);
             padding: 4rem 1.5rem;
             text-align: center;
+        }
+
+        body.dark .ratings {
+            background: var(--gray-light);
+            color: var(--primary);
         }
 
         .section-title {
@@ -610,18 +689,31 @@
             margin: 0 auto;
         }
 
+
         /* Rating Card */
-        .rating-card {
-            background: #fff;
+        body .rating-card {
+            background: var(--bg-color);
             padding: 2rem;
             border-radius: 1rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
+            transition: all .2s ease-in-out;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        body.dark .rating-card {
+            background-color: var(--gray);
+            color: var(--text-color);
         }
 
         .rating-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) translateZ(80px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
         }
+
+
+
 
         /* Stars */
         .stars {
@@ -633,8 +725,70 @@
 
         .rating-card p {
             font-size: 0.95rem;
-            color: #555;
+            color: var(--text-color);
             line-height: 1.5;
+        }
+
+        body.dark .rating-card p {
+            color: var(--gray-light);
+        }
+
+        .element {
+            width: 100%;
+            padding: 2px 4px;
+            /* background-color: red; */
+            /* border: 1px solid lightgray; */
+            display: flex;
+            justify-content: end;
+            gap: 15px;
+            z-index: 10000;
+            position: fixed;
+            bottom: 10px;
+
+        }
+
+        .element span {
+            width: 40px;
+            height: 40px;
+            border: 1px solid lightgray;
+            border-radius: clamp(4rem, 50%, 8rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            padding: 0 12px;
+            cursor: pointer;
+
+            transition: all 0.4s ease-in-out;
+            color: gold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .element span:hover {
+            background: #f3f3f3;
+            transform: scale(1.2);
+        }
+
+        body.dark .element span {
+            background-color: var(--text-color);
+            color: gold;
+        }
+
+        .nav-links.mobile-active {
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--light);
+            padding: 1rem;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .nav-links.mobile-active {
+            background-color: var(--dark);
         }
     </style>
 </head>
@@ -642,8 +796,14 @@
 <body>
     <!-- Header -->
     <header>
+
+
         <div class="container nav-container">
+
+
             <a href="#" class="logo" data-page="home">Alex<span>Morgan</span></a>
+
+
             <ul class="nav-links">
                 <li><a href="#" data-page="home">Home</a></li>
                 <li><a href="#" data-page="about">About</a></li>
@@ -657,6 +817,10 @@
         </div>
     </header>
 
+    <div class="element" id="element">
+        <span class="fas fa-sun" id="toggle-element" onclick="toggle()"></span>
+
+    </div>
     <!-- Home Page -->
     <section id="home" class="page-content active">
         <div class="hero">
@@ -673,8 +837,9 @@
                 </div>
                 <div class="hero-image">
                     <div
-                        style="width: 100%; height: 400px; background-color: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-user" style="font-size: 8rem; color: rgba(255,255,255,0.7);"></i>
+                        style="width: min(800px, 90%); height: 400px; padding: 12px; background-color: rgba(255,255,255,0.1); ; clip-path: circle(100px at center); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user"
+                            style="font-size: 8rem; color: rgba(255,255,255,0.7); padding: 12px; width: 200px;"></i>
                     </div>
                 </div>
             </div>
@@ -1129,20 +1294,12 @@
             });
 
             // Mobile menu toggle
+
+
+
             mobileMenu.addEventListener('click', function () {
-                if (navLinksContainer.style.display === 'flex') {
-                    navLinksContainer.style.display = 'none';
-                } else {
-                    navLinksContainer.style.display = 'flex';
-                    navLinksContainer.style.flexDirection = 'column';
-                    navLinksContainer.style.position = 'absolute';
-                    navLinksContainer.style.top = '100%';
-                    navLinksContainer.style.left = '0';
-                    navLinksContainer.style.right = '0';
-                    navLinksContainer.style.backgroundColor = 'white';
-                    navLinksContainer.style.padding = '1rem';
-                    navLinksContainer.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
-                }
+                navLinksContainer.classList.toggle('mobile-active');
+
             });
 
             // Function to show specific page and hide others
@@ -1173,6 +1330,28 @@
             // Update year in copyright
             document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} Alex Morgan. All Rights Reserved.`;
         });
+
+        //theme-toggle
+        const element = document.getElementById('element')
+        const ico = document.getElementById('toggle-element')
+        let light_status = true
+        const toggle = () => {
+            if (light_status) {
+                ico.classList.remove('fa-sun')
+                ico.classList.add('fa-moon')
+                document.body.classList.add('dark')
+
+
+            }
+            else {
+                ico.classList.remove('fa-moon')
+                ico.classList.add('fa-sun')
+                document.body.classList.remove('dark')
+
+
+            }
+            light_status = !light_status
+        }
     </script>
 </body>
 
