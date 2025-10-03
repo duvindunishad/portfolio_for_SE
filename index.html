@@ -283,6 +283,97 @@
             font-size: 1.2rem;
         }
 
+        /* Education Section */
+        .education {
+            background-color: white;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gray-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: calc(50% - 40px);
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border: 4px solid white;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px var(--gray-light);
+            z-index: 1;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .degree {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .year {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
         /* Projects Section */
         .projects-container {
             display: grid;
@@ -562,6 +653,26 @@
                 padding-right: 0;
                 margin-bottom: 2rem;
             }
+
+            /* Timeline responsive */
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                flex-direction: row !important;
+            }
+
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 60px;
+            }
+
+            .timeline-marker {
+                left: 30px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -648,6 +759,7 @@
                 <li><a href="#" data-page="home">Home</a></li>
                 <li><a href="#" data-page="about">About</a></li>
                 <li><a href="#" data-page="skills">Skills</a></li>
+                <li><a href="#" data-page="education">Education</a></li>
                 <li><a href="#" data-page="projects">Projects</a></li>
                 <li><a href="#" data-page="contact">Contact</a></li>
             </ul>
@@ -759,6 +871,44 @@
                         <li><i class="fas fa-terminal"></i> Linux/Unix</li>
                         <li><i class="fas fa-mobile-alt"></i> React Native</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Page -->
+    <section id="education" class="page-content">
+        <div class="education">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Tech University</h3>
+                            <div class="degree">Bachelor of Science in Software Engineering</div>
+                            <span class="year">2021 - Present</span>
+                            <p>Currently pursuing a degree in Software Engineering with a focus on full-stack development, artificial intelligence, and mobile technologies. Maintaining a GPA of 3.8/4.0.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>City High School</h3>
+                            <div class="degree">High School Diploma</div>
+                            <span class="year">2017 - 2021</span>
+                            <p>Graduated with honors. Completed Advanced Placement courses in Computer Science, Mathematics, and Physics. Member of the Robotics Club and Programming Team.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Online Certifications</h3>
+                            <div class="degree">Professional Development</div>
+                            <span class="year">2020 - Present</span>
+                            <p>Completed multiple online certifications including AWS Cloud Practitioner, React Developer Certification, and Full-Stack Web Development Bootcamp.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
