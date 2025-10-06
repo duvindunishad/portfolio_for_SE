@@ -34,12 +34,10 @@
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        h1,
-        h2,
-        h3,
-        h4 {
+        h1, h2, h3, h4 {
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1rem;
@@ -47,34 +45,38 @@
 
         h1 {
             font-size: 3.5rem;
+            animation: slideInFromLeft 1s ease-out;
         }
 
         h2 {
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem; /* Increased spacing */
             position: relative;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px; /* Increased spacing from heading */
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             border-radius: 2px;
+            animation: scaleInX 1s ease-out 0.5s both;
         }
 
         p {
             margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         section {
-            padding: 5rem 0;
-            margin-top: 20px;
+            padding: 6rem 0; /* Increased padding */
+            margin-top: 0; /* Removed conflicting margin */
         }
 
         .container {
@@ -85,21 +87,38 @@
 
         .btn {
             display: inline-block;
-            padding: 0.8rem 1.8rem;
+            padding: 1rem 2rem; /* Increased padding */
             background-color: var(--primary);
             color: white;
-            border-radius: 4px;
+            border-radius: 8px; /* Increased border radius */
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
             background-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
         }
 
         .btn-outline {
@@ -113,29 +132,37 @@
             color: white;
         }
 
-        /* Header */
+        /* Header with improved spacing */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1.8rem 0; /* Increased padding */
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem; /* Increased font size */
             font-weight: 700;
             color: var(--dark);
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--primary);
         }
 
         .logo span {
@@ -145,21 +172,45 @@
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 2.5rem; /* Increased spacing between nav items */
         }
 
         .nav-links li {
-            margin-left: 2rem;
+            position: relative;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 1.1rem; /* Increased font size */
+            padding: 0.8rem 1.2rem; /* Added padding for better click area */
+            border-radius: 6px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
             color: var(--primary);
+            background-color: rgba(37, 99, 235, 0.05);
+            transform: translateY(-2px);
         }
 
         .mobile-menu {
@@ -168,48 +219,75 @@
             cursor: pointer;
         }
 
-        /* Page Content */
+        /* Page Content with proper spacing */
         .page-content {
             display: none;
-            padding-top: 80px;
+            padding-top: 120px; /* Increased to account for larger header */
         }
 
         .page-content.active {
             display: block;
         }
 
-        /* Hero Section */
+        /* Hero Section with animations */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 10rem 0 7rem;
+            padding: 8rem 0 6rem; /* Better spacing */
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s infinite linear;
         }
 
         .hero-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 4rem; /* Added gap for better spacing */
         }
 
         .hero-text {
             flex: 1;
-            padding-right: 2rem;
+            animation: slideInFromLeft 1s ease-out;
         }
 
         .hero-text h1 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; /* Increased spacing */
         }
 
         .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem; /* Increased font size */
+            margin-bottom: 3rem; /* Increased spacing */
             opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem; /* Added gap between buttons */
+            flex-wrap: wrap;
         }
 
         .hero-image {
             flex: 1;
             text-align: center;
+            animation: slideInFromRight 1s ease-out;
+        }
+
+        .hero-image div {
+            animation: float 6s ease-in-out infinite;
         }
 
         .hero-image img {
@@ -226,17 +304,28 @@
 
         .btn-light:hover {
             background-color: var(--gray-light);
+            transform: translateY(-3px) scale(1.02);
         }
 
-        /* About Section */
+        /* About Section with better spacing */
+        .about {
+            padding: 8rem 0; /* Increased padding for more breathing room */
+        }
+
         .about-content {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem; /* Increased gap */
         }
 
         .about-text {
             flex: 2;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem; /* Increased paragraph spacing */
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .about-image {
@@ -244,27 +333,48 @@
             text-align: center;
         }
 
-        .about-image img {
+        .about-image img,
+        .about-image div {
             width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 350px; /* Increased size */
+            border-radius: 15px; /* Increased border radius */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image div:hover {
+            transform: scale(1.05) rotate(2deg);
         }
 
         /* Skills Section */
         .skills {
             background-color: var(--gray-light);
+            padding: 8rem 0; /* Increased padding */
         }
 
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Increased min width */
+            gap: 3rem; /* Increased gap */
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2.5rem; /* Increased padding */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         .skill-category h3 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; /* Increased spacing */
             color: var(--primary);
+            font-size: 1.4rem;
         }
 
         .skill-list {
@@ -272,168 +382,184 @@
         }
 
         .skill-list li {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem; /* Increased spacing */
             display: flex;
             align-items: center;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            transform: translateX(10px);
+            color: var(--primary);
         }
 
         .skill-list i {
             color: var(--primary);
-            margin-right: 0.8rem;
-            font-size: 1.2rem;
+            margin-right: 1rem; /* Increased spacing */
+            font-size: 1.3rem;
+            width: 24px;
         }
 
-        /* Projects Section */
+        /* Projects Section with animations */
+        .projects {
+            padding: 8rem 0; /* Increased padding */
+        }
+
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Increased min width */
+            gap: 2.5rem; /* Increased gap */
         }
 
         .project-card {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 20px; /* Increased border radius */
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
         }
 
         .project-image {
-            height: 200px;
-            background-color: var(--gray-light);
+            height: 220px; /* Increased height */
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gray);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover .project-image::before {
+            left: 100%;
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 2rem; /* Increased padding */
         }
 
         .project-content h3 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
         .project-content p {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
             color: var(--gray);
+            line-height: 1.6;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0.8rem; /* Increased gap */
+            margin-bottom: 1.5rem;
         }
 
         .project-tag {
-            background-color: var(--gray-light);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--dark);
-        }
-
-        /* Project Detail Pages */
-        .project-detail {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .project-hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 7rem 0 4rem;
-            margin-bottom: 3rem;
-            border-radius: 10px;
+            padding: 0.5rem 1rem; /* Increased padding */
+            border-radius: 25px; /* More rounded */
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        .project-hero-content {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
+        .project-tag:hover {
+            transform: scale(1.1);
         }
 
-        .project-hero-text {
-            flex: 2;
+        /* Animations */
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
-        .project-hero-image {
-            flex: 1;
-            text-align: center;
+        @keyframes slideInFromRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
-        .project-hero-image div {
-            width: 100%;
-            height: 250px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        .project-info {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+        @keyframes scaleInX {
+            from {
+                transform: translateX(-50%) scaleX(0);
+            }
+            to {
+                transform: translateX(-50%) scaleX(1);
+            }
         }
 
-        .project-description h3,
-        .project-details h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+            50% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-5px) rotate(-1deg);
+            }
         }
 
-        .project-features {
-            margin: 2rem 0;
-        }
-
-        .project-features ul {
-            list-style-type: none;
-        }
-
-        .project-features li {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .project-features i {
-            color: var(--primary);
-            margin-right: 0.8rem;
-            margin-top: 0.2rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .tech-stack {
-            margin-top: 2rem;
-        }
-
-        .tech-stack .project-tags {
-            margin-top: 1rem;
-        }
-
-        .back-button {
-            margin-bottom: 2rem;
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
         }
 
         /* Contact Section */
         .contact {
             background-color: var(--dark);
             color: white;
+            padding: 8rem 0; /* Increased padding */
         }
 
         .contact h2::after {
@@ -442,7 +568,7 @@
 
         .contact-container {
             display: flex;
-            gap: 3rem;
+            gap: 4rem; /* Increased gap */
         }
 
         .contact-info {
@@ -450,7 +576,9 @@
         }
 
         .contact-info p {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem; /* Increased spacing */
+            font-size: 1.1rem;
+            line-height: 1.7;
         }
 
         .contact-details {
@@ -458,15 +586,23 @@
         }
 
         .contact-details li {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem; /* Increased spacing */
             display: flex;
             align-items: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-details li:hover {
+            transform: translateX(10px);
+            color: var(--primary);
         }
 
         .contact-details i {
-            margin-right: 1rem;
+            margin-right: 1.5rem; /* Increased spacing */
             color: var(--primary);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            width: 24px;
         }
 
         .contact-form {
@@ -474,25 +610,35 @@
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; /* Increased spacing */
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem; /* Increased spacing */
+            font-weight: 500;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 4px;
+            padding: 1.2rem; /* Increased padding */
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.15);
+            outline: none;
+            transform: scale(1.02);
         }
 
         textarea.form-control {
-            min-height: 150px;
+            min-height: 180px; /* Increased height */
             resize: vertical;
         }
 
@@ -500,7 +646,7 @@
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 3rem 0;
+            padding: 4rem 0; /* Increased padding */
             text-align: center;
         }
 
@@ -508,34 +654,32 @@
             display: flex;
             justify-content: center;
             list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .social-links li {
-            margin: 0 1rem;
+            margin-bottom: 2.5rem; /* Increased spacing */
+            gap: 1.5rem; /* Added gap for consistent spacing */
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 50px; /* Increased size */
+            height: 50px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .social-links a:hover {
             background-color: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
 
         .copyright {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* Responsive Design */
@@ -546,21 +690,28 @@
 
             h2 {
                 font-size: 2rem;
+                margin-bottom: 3rem;
             }
 
             .hero-content,
             .about-content,
-            .contact-container,
-            .project-hero-content,
-            .project-info {
+            .contact-container {
                 flex-direction: column;
-                grid-template-columns: 1fr;
+                gap: 3rem;
             }
 
             .hero-text,
             .about-text {
                 padding-right: 0;
                 margin-bottom: 2rem;
+            }
+
+            .nav-container {
+                padding: 1.5rem 0;
+            }
+
+            .page-content {
+                padding-top: 100px;
             }
         }
 
@@ -577,64 +728,102 @@
                 font-size: 2.2rem;
             }
 
-            .project-links {
+            .hero-buttons {
                 flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-buttons .btn {
+                text-align: center;
+            }
+
+            .nav-container {
+                padding: 1.2rem 0;
+            }
+
+            .page-content {
+                padding-top: 90px;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .skills-container,
+            .projects-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
 
         /* Ratings Section */
         .ratings {
             background: #f8f9fa;
-            padding: 4rem 1.5rem;
+            padding: 6rem 1.5rem; /* Increased padding */
             text-align: center;
         }
 
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem; /* Increased size */
+            margin-bottom: 1rem; /* Increased spacing */
             color: #111;
         }
 
         .section-subtitle {
-            font-size: 1rem;
+            font-size: 1.2rem; /* Increased size */
             color: #666;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem; /* Increased spacing */
         }
 
-        /* Grid */
         .ratings-grid {
             display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem; /* Increased gap */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        /* Rating Card */
         .rating-card {
             background: #fff;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
+            padding: 2.5rem; /* Increased padding */
+            border-radius: 1.5rem; /* Increased border radius */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rating-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        /* Stars */
+        .rating-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
         .stars {
             color: #e63946;
-            /* red accent for stars */
-            margin: 0.5rem 0 1rem;
-            font-size: 1.2rem;
+            margin: 1rem 0 1.5rem; /* Increased spacing */
+            font-size: 1.4rem; /* Increased size */
         }
 
         .rating-card p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #555;
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        /* Scroll animation trigger */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -663,17 +852,14 @@
             <div class="container hero-content">
                 <div class="hero-text">
                     <h1>Software Engineering Student</h1>
-                    <p>Passionate about creating innovative solutions through code. Currently pursuing a degree in
-                        Software Engineering with focus on full-stack development and AI technologies.</p>
+                    <p>Passionate about creating innovative solutions through code. Currently pursuing a degree in Software Engineering with focus on full-stack development and AI technologies.</p>
                     <div class="hero-buttons">
                         <a href="#" class="btn btn-light" data-page="projects">View Projects</a>
-                        <a href="#" class="btn btn-outline" data-page="contact"
-                            style="color: white; border-color: white;">Contact Me</a>
+                        <a href="#" class="btn btn-outline" data-page="contact" style="color: white; border-color: white;">Contact Me</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <div
-                        style="width: 100%; height: 400px; background-color: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 100%; height: 400px; background-color: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-user" style="font-size: 8rem; color: rgba(255,255,255,0.7);"></i>
                     </div>
                 </div>
@@ -682,43 +868,19 @@
     </section>
 
     <!-- About Page -->
-    <section id="about" class="page-content py-16 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">About Me</h2>
-
-            <div class="about-content grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <!-- About Text -->
-                <div class="about-text space-y-5">
-                    <p class="text-gray-700 leading-relaxed">
-                        Hello! I'm <span class="font-semibold text-gray-900">Alex Morgan</span>, a third-year Software
-                        Engineering student at Tech University with a
-                        passion for developing innovative software solutions. My journey in programming started in high
-                        school, and
-                        since then, I’ve been constantly expanding my knowledge and skills.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        I'm particularly interested in <span class="font-medium text-gray-900">full-stack web
-                            development</span>,
-                        <span class="font-medium text-gray-900">machine learning</span>, and
-                        <span class="font-medium text-gray-900">mobile application development</span>. I enjoy solving
-                        complex problems and creating applications that make a positive impact.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        When I’m not coding, you can find me contributing to open-source projects, attending tech
-                        meetups, or
-                        exploring new programming languages and frameworks. I’m always eager to learn and take on new
-                        challenges.
-                    </p>
-                    <a href="#"
-                        class="inline-block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition">
-                        Download Resume
-                    </a>
+    <section id="about" class="page-content about">
+        <div class="container">
+            <h2 class="animate-on-scroll">About Me</h2>
+            <div class="about-content animate-on-scroll">
+                <div class="about-text">
+                    <p>Hello! I'm <span style="font-weight: 600; color: var(--primary);">Alex Morgan</span>, a third-year Software Engineering student at Tech University with a passion for developing innovative software solutions. My journey in programming started in high school, and since then, I've been constantly expanding my knowledge and skills.</p>
+                    <p>I'm particularly interested in <span style="font-weight: 600; color: var(--primary);">full-stack web development</span>, <span style="font-weight: 600; color: var(--primary);">machine learning</span>, and <span style="font-weight: 600; color: var(--primary);">mobile application development</span>. I enjoy solving complex problems and creating applications that make a positive impact.</p>
+                    <p>When I'm not coding, you can find me contributing to open-source projects, attending tech meetups, or exploring new programming languages and frameworks. I'm always eager to learn and take on new challenges.</p>
+                    <a href="#" class="btn">Download Resume</a>
                 </div>
-
-                <!-- About Image -->
-                <div class="about-image flex justify-center">
-                    <div class="w-72 h-72 bg-gray-200 rounded-xl flex items-center justify-center shadow-md">
-                        <i class="fas fa-user-graduate text-7xl text-gray-500"></i>
+                <div class="about-image">
+                    <div style="width: 100%; height: 350px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-user-graduate" style="font-size: 5rem; opacity: 0.8;"></i>
                     </div>
                 </div>
             </div>
@@ -726,11 +888,11 @@
     </section>
 
     <!-- Skills Page -->
-    <section id="skills" class="page-content">
+    <section id="skills" class="page-content skills">
         <div class="container">
-            <h2>Technical Skills</h2>
+            <h2 class="animate-on-scroll">Technical Skills</h2>
             <div class="skills-container">
-                <div class="skill-category">
+                <div class="skill-category animate-on-scroll">
                     <h3>Programming Languages</h3>
                     <ul class="skill-list">
                         <li><i class="fab fa-js-square"></i> JavaScript (ES6+)</li>
@@ -740,7 +902,7 @@
                         <li><i class="fas fa-code"></i> TypeScript</li>
                     </ul>
                 </div>
-                <div class="skill-category">
+                <div class="skill-category animate-on-scroll">
                     <h3>Web Development</h3>
                     <ul class="skill-list">
                         <li><i class="fab fa-react"></i> React.js</li>
@@ -750,7 +912,7 @@
                         <li><i class="fas fa-database"></i> MongoDB & MySQL</li>
                     </ul>
                 </div>
-                <div class="skill-category">
+                <div class="skill-category animate-on-scroll">
                     <h3>Tools & Technologies</h3>
                     <ul class="skill-list">
                         <li><i class="fab fa-git-alt"></i> Git & GitHub</li>
@@ -765,18 +927,17 @@
     </section>
 
     <!-- Projects Page -->
-    <section id="projects" class="page-content">
+    <section id="projects" class="page-content projects">
         <div class="container">
-            <h2>My Projects</h2>
+            <h2 class="animate-on-scroll">My Projects</h2>
             <div class="projects-container">
-                <div class="project-card">
+                <div class="project-card animate-on-scroll">
                     <div class="project-image">
-                        <i class="fas fa-shopping-cart" style="font-size: 3rem; color: var(--gray);"></i>
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem;"></i>
                     </div>
                     <div class="project-content">
                         <h3>E-Commerce Platform</h3>
-                        <p>A full-stack e-commerce application with user authentication, product catalog, shopping cart,
-                            and payment integration.</p>
+                        <p>A full-stack e-commerce application with user authentication, product catalog, shopping cart, and payment integration.</p>
                         <div class="project-tags">
                             <span class="project-tag">React</span>
                             <span class="project-tag">Node.js</span>
@@ -786,14 +947,13 @@
                         <a href="#" class="btn view-project" data-project="ecommerce">View Details</a>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card animate-on-scroll">
                     <div class="project-image">
-                        <i class="fas fa-robot" style="font-size: 3rem; color: var(--gray);"></i>
+                        <i class="fas fa-robot" style="font-size: 3rem;"></i>
                     </div>
                     <div class="project-content">
                         <h3>AI Chatbot</h3>
-                        <p>An intelligent chatbot using natural language processing to answer customer queries and
-                            provide support.</p>
+                        <p>An intelligent chatbot using natural language processing to answer customer queries and provide support.</p>
                         <div class="project-tags">
                             <span class="project-tag">Python</span>
                             <span class="project-tag">TensorFlow</span>
@@ -803,14 +963,13 @@
                         <a href="#" class="btn view-project" data-project="ai-chatbot">View Details</a>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card animate-on-scroll">
                     <div class="project-image">
-                        <i class="fas fa-tasks" style="font-size: 3rem; color: var(--gray);"></i>
+                        <i class="fas fa-tasks" style="font-size: 3rem;"></i>
                     </div>
                     <div class="project-content">
                         <h3>Task Management App</h3>
-                        <p>A collaborative task management application with real-time updates, team collaboration, and
-                            progress tracking.</p>
+                        <p>A collaborative task management application with real-time updates, team collaboration, and progress tracking.</p>
                         <div class="project-tags">
                             <span class="project-tag">Vue.js</span>
                             <span class="project-tag">Firebase</span>
@@ -825,20 +984,19 @@
     </section>
 
     <!-- Contact Page -->
-    <section id="contact" class="page-content">
+    <section id="contact" class="page-content contact">
         <div class="container">
             <h2>Get In Touch</h2>
             <div class="contact-container">
-                <div class="contact-info">
-                    <p>I'm currently looking for internship opportunities and would love to connect! Feel free to reach
-                        out if you have any questions or just want to say hello.</p>
+                <div class="contact-info animate-on-scroll">
+                    <p>I'm currently looking for internship opportunities and would love to connect! Feel free to reach out if you have any questions or just want to say hello.</p>
                     <ul class="contact-details">
                         <li><i class="fas fa-envelope"></i> alex.morgan@example.com</li>
                         <li><i class="fas fa-phone"></i> +1 (123) 456-7890</li>
                         <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
                     </ul>
                 </div>
-                <div class="contact-form">
+                <div class="contact-form animate-on-scroll">
                     <form>
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -859,208 +1017,6 @@
         </div>
     </section>
 
-    <!-- Project Detail Pages -->
-    <!-- E-Commerce Project Detail -->
-    <section id="project-ecommerce" class="page-content">
-        <div class="container">
-            <div class="back-button">
-                <a href="#" class="btn btn-outline back-to-projects"><i class="fas fa-arrow-left"></i> Back to
-                    Projects</a>
-            </div>
-            <div class="project-detail">
-                <div class="project-hero">
-                    <div class="project-hero-content">
-                        <div class="project-hero-text">
-                            <h1>E-Commerce Platform</h1>
-                            <p>A full-stack e-commerce solution with modern UI/UX and secure payment processing</p>
-                        </div>
-                        <div class="project-hero-image">
-                            <div>
-                                <i class="fas fa-shopping-cart"
-                                    style="font-size: 5rem; color: rgba(255,255,255,0.8);"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-info">
-                    <div class="project-description">
-                        <h3>Project Overview</h3>
-                        <p>This e-commerce platform was developed as a full-stack application to provide a seamless
-                            shopping experience. The platform includes user authentication, product catalog, shopping
-                            cart functionality, and secure payment processing through Stripe integration.</p>
-
-                        <div class="project-features">
-                            <h3>Key Features</h3>
-                            <ul>
-                                <li><i class="fas fa-check"></i> User registration and authentication system</li>
-                                <li><i class="fas fa-check"></i> Product catalog with search and filtering</li>
-                                <li><i class="fas fa-check"></i> Shopping cart with persistent storage</li>
-                                <li><i class="fas fa-check"></i> Secure payment processing with Stripe</li>
-                                <li><i class="fas fa-check"></i> Order history and tracking</li>
-                                <li><i class="fas fa-check"></i> Admin dashboard for inventory management</li>
-                                <li><i class="fas fa-check"></i> Responsive design for all devices</li>
-                            </ul>
-                        </div>
-
-                        <div class="project-links">
-                            <a href="#" class="btn"><i class="fab fa-github"></i> View Code</a>
-                            <a href="#" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        </div>
-                    </div>
-
-                    <div class="project-details">
-                        <h3>Project Details</h3>
-                        <p><strong>Timeline:</strong> 3 months</p>
-                        <p><strong>Status:</strong> Completed</p>
-                        <p><strong>Role:</strong> Full-stack Developer</p>
-
-                        <div class="tech-stack">
-                            <h3>Technologies Used</h3>
-                            <div class="project-tags">
-                                <span class="project-tag">React</span>
-                                <span class="project-tag">Node.js</span>
-                                <span class="project-tag">Express</span>
-                                <span class="project-tag">MongoDB</span>
-                                <span class="project-tag">Stripe API</span>
-                                <span class="project-tag">JWT</span>
-                                <span class="project-tag">Redux</span>
-                                <span class="project-tag">CSS3</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- AI Chatbot Project Detail -->
-    <!-- ratings -->
-    <section id="ratings" class="ratings">
-        <div class="container">
-            <h2 class="section-title">Customer Ratings</h2>
-            <p class="section-subtitle">What our customers say about AutoElite</p>
-
-            <div class="ratings-grid">
-                <!-- Rating Card 1 -->
-                <div class="rating-card">
-                    <h3>John D.</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>"Great service! My car looks brand new after detailing."</p>
-                </div>
-
-                <!-- Rating Card 2 -->
-                <div class="rating-card">
-                    <h3>Sophia M.</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Amazing experience. Professional staff and fast service."</p>
-                </div>
-
-                <!-- Rating Card 3 -->
-                <div class="rating-card">
-                    <h3>David R.</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <p>"Good value for money. Will definitely come back again."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Task Manager Project Detail -->
-    <section id="project-task-manager" class="page-content">
-        <div class="container">
-            <div class="back-button">
-                <a href="#" class="btn btn-outline back-to-projects"><i class="fas fa-arrow-left"></i> Back to
-                    Projects</a>
-            </div>
-            <div class="project-detail">
-                <div class="project-hero">
-                    <div class="project-hero-content">
-                        <div class="project-hero-text">
-                            <h1>Task Management App</h1>
-                            <p>A collaborative task management application with real-time updates and team features</p>
-                        </div>
-                        <div class="project-hero-image">
-                            <div>
-                                <i class="fas fa-tasks" style="font-size: 5rem; color: rgba(255,255,255,0.8);"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-info">
-                    <div class="project-description">
-                        <h3>Project Overview</h3>
-                        <p>This task management application was designed to help teams collaborate effectively on
-                            projects. It features real-time updates, task assignment, progress tracking, and multiple
-                            project views to suit different workflows.</p>
-
-                        <div class="project-features">
-                            <h3>Key Features</h3>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Real-time task updates</li>
-                                <li><i class="fas fa-check"></i> Team collaboration tools</li>
-                                <li><i class="fas fa-check"></i> Multiple project views (list, board, calendar)</li>
-                                <li><i class="fas fa-check"></i> File attachments and comments</li>
-                                <li><i class="fas fa-check"></i> Progress tracking and reporting</li>
-                                <li><i class="fas fa-check"></i> Mobile-responsive design</li>
-                                <li><i class="fas fa-check"></i> Offline functionality</li>
-                            </ul>
-                        </div>
-
-                        <div class="project-links">
-                            <a href="#" class="btn"><i class="fab fa-github"></i> View Code</a>
-                            <a href="#" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        </div>
-                    </div>
-
-                    <div class="project-details">
-                        <h3>Project Details</h3>
-                        <p><strong>Timeline:</strong> 2 months</p>
-                        <p><strong>Status:</strong> Completed</p>
-                        <p><strong>Role:</strong> Frontend Developer</p>
-
-                        <div class="tech-stack">
-                            <h3>Technologies Used</h3>
-                            <div class="project-tags">
-                                <span class="project-tag">Vue.js</span>
-                                <span class="project-tag">Firebase</span>
-                                <span class="project-tag">Vuex</span>
-                                <span class="project-tag">PWA</span>
-                                <span class="project-tag">CSS3</span>
-                                <span class="project-tag">Chart.js</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Contact Page -->
-
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1070,12 +1026,12 @@
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
             </ul>
-            <p class="copyright">© 2023 Alex Morgan. All Rights Reserved.</p>
+            <p class="copyright">© 2024 Alex Morgan. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Page navigation functionality
+        // Page navigation functionality with enhanced animations
         document.addEventListener('DOMContentLoaded', function () {
             const navLinks = document.querySelectorAll('.nav-links a, .logo, .hero-buttons a');
             const pages = document.querySelectorAll('.page-content');
@@ -1083,9 +1039,42 @@
             const navLinksContainer = document.querySelector('.nav-links');
             const viewProjectButtons = document.querySelectorAll('.view-project');
             const backToProjectsButtons = document.querySelectorAll('.back-to-projects');
+            const header = document.querySelector('header');
 
             // Set initial active page
             showPage('home');
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with animate-on-scroll class
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.backdropFilter = 'blur(15px)';
+                    header.style.boxShadow = '0 6px 30px rgba(0, 0, 0, 0.15)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.backdropFilter = 'blur(10px)';
+                    header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                }
+            });
 
             // Add click event listeners to navigation links
             navLinks.forEach(link => {
@@ -1142,6 +1131,7 @@
                     navLinksContainer.style.backgroundColor = 'white';
                     navLinksContainer.style.padding = '1rem';
                     navLinksContainer.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+                    navLinksContainer.style.borderRadius = '0 0 15px 15px';
                 }
             });
 
@@ -1150,6 +1140,16 @@
                 pages.forEach(page => {
                     if (page.id === pageId) {
                         page.classList.add('active');
+                        // Re-trigger animations for the active page
+                        const animatedElements = page.querySelectorAll('.animate-on-scroll');
+                        animatedElements.forEach(el => {
+                            el.classList.remove('animated');
+                            setTimeout(() => {
+                                if (el.getBoundingClientRect().top < window.innerHeight) {
+                                    el.classList.add('animated');
+                                }
+                            }, 100);
+                        });
                     } else {
                         page.classList.remove('active');
                     }
@@ -1160,18 +1160,33 @@
                     if (link.getAttribute('data-page') === pageId) {
                         link.style.color = 'var(--primary)';
                         link.style.fontWeight = '600';
+                        link.style.backgroundColor = 'rgba(37, 99, 235, 0.1)';
                     } else {
                         link.style.color = '';
                         link.style.fontWeight = '';
+                        link.style.backgroundColor = '';
                     }
                 });
 
-                // Scroll to top when changing pages
-                window.scrollTo(0, 0);
+                // Smooth scroll to top when changing pages
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
 
             // Update year in copyright
             document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} Alex Morgan. All Rights Reserved.`;
+
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', () => {
+                const hero = document.querySelector('.hero');
+                const scrolled = window.pageYOffset;
+                if (hero && scrolled < hero.offsetHeight) {
+                    const rate = scrolled * -0.5;
+                    hero.style.transform = `translateY(${rate}px)`;
+                }
+            });
         });
     </script>
 </body>
